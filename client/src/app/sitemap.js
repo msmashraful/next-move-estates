@@ -7,12 +7,9 @@ const SITE_URL =
 
 async function getProperties() {
   try {
-    const response = await fetch(
-      `${API_URL}/api/properties`,
-      {
-        cache: "no-store",
-      }
-    );
+    const response = await fetch(`${API_URL}/api/properties`, {
+        next: { revalidate: 3600 },
+      });
 
     if (!response.ok) {
       return [];
